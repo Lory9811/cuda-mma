@@ -22,6 +22,7 @@ __global__ void wmma16x16(half* a, half* b, half* c) {
 	
 	wmma::load_matrix_sync(a_frag, a, 16);
 	wmma::load_matrix_sync(b_frag, b, 16);
+	wmma::load_matrix_sync(acc_frag, c, 16, wmma::mem_row_major);
 
 	wmma::mma_sync(acc_frag, a_frag, b_frag, acc_frag);
 
